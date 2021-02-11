@@ -21,7 +21,7 @@
               :url="url"
               :text="text"
               :border-color="borderColor"
-              :border-width="borderWidth"
+              :border-width="shouldShowBorder ? borderWidth : 0"
               :width="150"
               class="mx-auto"
             />
@@ -48,16 +48,20 @@
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🖼</span> ボーダー</h2>
-          <input v-model="borderColor" type="color" />
-          <input v-model="borderWidth" type="range" min="5" max="12" />
+          <AppSwitch v-model="shouldShowBorder" />
+          <template v-if="shouldShowBorder">
+            <input v-model="borderColor" type="color" />
+            <input v-model="borderWidth" type="range" min="5" max="12" />
+          </template>
         </section>
         <section class="mt-8 text-center">
-          <button
-            class="rounded-full bg-brand-accent text-white py-2 px-8 text-md"
+          <AppButton
+            :is-loading="isLoading"
+            :label="'保存'"
             @click="handleSaveImage"
           >
-            <span class="mr-2">💾 </span>保存
-          </button>
+            <template v-slot:icon><span>💾 </span></template>
+          </AppButton>
         </section>
       </main>
     </div>
@@ -75,6 +79,8 @@ type LocalData = {
   text: string
   borderColor: string
   borderWidth: number
+  isLoading: boolean
+  shouldShowBorder: boolean
 }
 
 export default Vue.extend({
@@ -84,6 +90,8 @@ export default Vue.extend({
       text: '',
       borderColor: '#fafafa',
       borderWidth: 8,
+      isLoading: false,
+      shouldShowBorder: true,
     }
   },
   methods: {
@@ -94,9 +102,11 @@ export default Vue.extend({
       const file = e.target.files[0]
       this.url = window.URL.createObjectURL(file)
     },
-    handleSaveImage() {
+    async handleSaveImage() {
+      this.isLoading = true
       const icon = this.$refs.icon as any
-      icon.downloadImage()
+      await icon.downloadImage()
+      this.isLoading = false
     },
   },
 })
