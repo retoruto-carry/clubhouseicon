@@ -17,7 +17,13 @@
       </clipPath>
     </defs>
     <use xlink:href="#path01" :fill="borderColor" />
-    <svg x="5" y="5" width="90" height="90" viewBox="0 0 100 100">
+    <svg
+      :x="borderWidth"
+      :y="borderWidth"
+      :width="100 - borderWidth * 2"
+      :height="100 - borderWidth * 2"
+      viewBox="0 0 100 100"
+    >
       <image
         class="image"
         :xlink:href="url"
@@ -33,7 +39,8 @@
       y="50"
       text-anchor="middle"
       dominant-baseline="central"
-      style="font-size: 20px; fill: #fff"
+      style="font-size: 20px; fill: #fff; font-weight: bold"
+      font-family="sans-serif"
     >
       {{ text }}
     </text>
@@ -62,10 +69,14 @@ export default Vue.extend({
       type: Number,
       default: 100,
     },
+    borderWidth: {
+      type: Number,
+      default: 8,
+    },
   },
   methods: {
-    downloadImage() {
-      ssap.saveSvgAsPng(this.$refs.icon, 'download.png', {
+    async downloadImage() {
+      await ssap.saveSvgAsPng(this.$refs.icon, 'download.png', {
         scale: 10,
       })
     },

@@ -14,6 +14,7 @@
             :url="url"
             :text="text"
             :border-color="borderColor"
+            :border-width="borderWidth"
             :width="150"
             class="mx-auto"
           />
@@ -40,6 +41,7 @@
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🖼</span> ボーダー</h2>
           <input v-model="borderColor" type="color" />
+          <input v-model="borderWidth" type="range" min="5" max="12" />
         </section>
         <section class="mt-8 text-center">
           <button
@@ -64,6 +66,7 @@ type LocalData = {
   url: string
   text: string
   borderColor: string
+  borderWidth: number
 }
 
 export default Vue.extend({
@@ -72,6 +75,7 @@ export default Vue.extend({
       url: '',
       text: '',
       borderColor: '#fafafa',
+      borderWidth: 8,
     }
   },
   methods: {
