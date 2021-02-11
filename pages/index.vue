@@ -9,21 +9,29 @@
       </header>
       <main class="mt-4">
         <section>
-          <Icon
-            ref="icon"
-            :url="url"
-            :text="text"
-            :border-color="borderColor"
-            :border-width="borderWidth"
-            :width="150"
-            class="mx-auto"
-          />
-          <input
-            class="mt-4"
-            type="file"
-            accept="image/jpg,image/png,image/gif"
-            @change="handleInputImage"
-          />
+          <label class="cursor-pointer hover:bg-blue">
+            <SVGElement
+              v-show="!url"
+              name="selectPhoto"
+              class="mx-auto iconFileInput"
+            />
+            <Icon
+              v-show="url"
+              ref="icon"
+              :url="url"
+              :text="text"
+              :border-color="borderColor"
+              :border-width="borderWidth"
+              :width="150"
+              class="mx-auto"
+            />
+            <input
+              class="hidden"
+              type="file"
+              accept="image/jpg,image/png,image/gif"
+              @change="handleInputImage"
+            />
+          </label>
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">✏</span> テキスト</h2>
@@ -97,5 +105,8 @@ export default Vue.extend({
 <style scoped>
 .heading {
   @apply text-lg;
+}
+.iconFileInput {
+  width: 150px;
 }
 </style>
