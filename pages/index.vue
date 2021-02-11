@@ -21,7 +21,7 @@
               :url="url"
               :text="text"
               :border-color="borderColor"
-              :border-width="borderWidth"
+              :border-width="shouldShowBorder ? borderWidth : 0"
               :width="150"
               class="mx-auto"
             />
@@ -48,8 +48,11 @@
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🖼</span> ボーダー</h2>
-          <input v-model="borderColor" type="color" />
-          <input v-model="borderWidth" type="range" min="5" max="12" />
+          <AppSwitch v-model="shouldShowBorder" />
+          <template v-if="shouldShowBorder">
+            <input v-model="borderColor" type="color" />
+            <input v-model="borderWidth" type="range" min="5" max="12" />
+          </template>
         </section>
         <section class="mt-8 text-center">
           <AppButton
@@ -77,6 +80,7 @@ type LocalData = {
   borderColor: string
   borderWidth: number
   isLoading: boolean
+  shouldShowBorder: boolean
 }
 
 export default Vue.extend({
@@ -87,6 +91,7 @@ export default Vue.extend({
       borderColor: '#fafafa',
       borderWidth: 8,
       isLoading: false,
+      shouldShowBorder: true,
     }
   },
   methods: {
