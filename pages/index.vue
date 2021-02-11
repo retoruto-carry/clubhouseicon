@@ -14,6 +14,7 @@
             :url="url"
             :text="text"
             :border-color="borderColor"
+            :border-width="8"
             :width="150"
             class="mx-auto"
           />

@@ -17,7 +17,13 @@
       </clipPath>
     </defs>
     <use xlink:href="#path01" :fill="borderColor" />
-    <svg x="5" y="5" width="90" height="90" viewBox="0 0 100 100">
+    <svg
+      :x="borderWidth"
+      :y="borderWidth"
+      :width="100 - borderWidth * 2"
+      :height="100 - borderWidth * 2"
+      viewBox="0 0 100 100"
+    >
       <image
         class="image"
         :xlink:href="url"
@@ -62,6 +68,10 @@ export default Vue.extend({
     width: {
       type: Number,
       default: 100,
+    },
+    borderWidth: {
+      type: Number,
+      default: 8,
     },
   },
   methods: {
