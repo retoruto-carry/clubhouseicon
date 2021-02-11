@@ -1,5 +1,5 @@
 <template>
-  <di class="container mx-auto py-8 px-8">
+  <div class="container mx-auto py-8 px-8">
     <div>
       <header>
         <h1 class="md:text-2xl text-xl">
@@ -65,7 +65,7 @@
         </section>
       </main>
     </div>
-  </di>
+  </div>
 </template>
 
 <script lang="ts">
