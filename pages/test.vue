@@ -10,12 +10,15 @@
           <use xlink:href="#path01" />
         </clipPath>
       </defs>
+      <use xlink:href="#path01" fill="#000000" />
       <image
         :href="url"
         width="100%"
         height="100%"
         preserveAspectRatio="xMidYMid slice"
         clip-path="url(#clip01)"
+        transform="scale(0.9 0.9)"
+        transform-origin="center"
       />
       <use xlink:href="#path01" fill="#000000" fill-opacity="0.3" />
       <text
