@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto py-8 px-8">
+  <di class="container mx-auto py-8 px-8">
     <div>
       <header>
         <h1 class="md:text-2xl text-xl">
@@ -52,16 +52,17 @@
           <input v-model="borderWidth" type="range" min="5" max="12" />
         </section>
         <section class="mt-8 text-center">
-          <button
-            class="rounded-full bg-brand-accent text-white py-2 px-8 text-md"
+          <AppButton
+            :is-loading="isLoading"
+            :label="'保存'"
             @click="handleSaveImage"
           >
-            <span class="mr-2">💾 </span>保存
-          </button>
+            <template v-slot:icon><span>💾 </span></template>
+          </AppButton>
         </section>
       </main>
     </div>
-  </div>
+  </di>
 </template>
 
 <script lang="ts">
@@ -75,6 +76,7 @@ type LocalData = {
   text: string
   borderColor: string
   borderWidth: number
+  isLoading: boolean
 }
 
 export default Vue.extend({
@@ -84,6 +86,7 @@ export default Vue.extend({
       text: '',
       borderColor: '#fafafa',
       borderWidth: 8,
+      isLoading: false,
     }
   },
   methods: {
@@ -94,9 +97,11 @@ export default Vue.extend({
       const file = e.target.files[0]
       this.url = window.URL.createObjectURL(file)
     },
-    handleSaveImage() {
+    async handleSaveImage() {
+      this.isLoading = true
       const icon = this.$refs.icon as any
-      icon.downloadImage()
+      await icon.downloadImage()
+      this.isLoading = false
     },
   },
 })
