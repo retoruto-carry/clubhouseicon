@@ -26,7 +26,8 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "save-svg-as-png": "^1.4.17"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.6",
