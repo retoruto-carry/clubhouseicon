@@ -75,8 +75,8 @@ export default Vue.extend({
     },
   },
   methods: {
-    downloadImage() {
-      ssap.saveSvgAsPng(this.$refs.icon, 'download.png', {
+    async downloadImage() {
+      await ssap.saveSvgAsPng(this.$refs.icon, 'download.png', {
         scale: 10,
       })
     },
