@@ -17,22 +17,17 @@
       </clipPath>
     </defs>
     <use xlink:href="#path01" :fill="borderColor" />
-    <image
-      :xlink:href="url"
-      width="100%"
-      height="100%"
-      preserveAspectRatio="xMidYMid slice"
-      clip-path="url(#clip01)"
-      transform="scale(0.9 0.9)"
-      transform-origin="center"
-    />
-    <use
-      xlink:href="#path01"
-      fill="#000000"
-      fill-opacity="0.25"
-      transform="scale(0.9 0.9)"
-      transform-origin="center"
-    />
+    <svg x="5" y="5" width="90" height="90" viewBox="0 0 100 100">
+      <image
+        class="image"
+        :xlink:href="url"
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid slice"
+        clip-path="url(#clip01)"
+      />
+      <use xlink:href="#path01" fill="#000000" fill-opacity="0.25" />
+    </svg>
     <text
       x="50"
       y="50"
