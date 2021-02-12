@@ -6,6 +6,7 @@
     :width="width"
     :height="width"
     viewBox="0 0 100 100"
+    @click="handleClicked"
   >
     <defs>
       <path
@@ -117,6 +118,9 @@ export default Vue.extend({
       await ssap.saveSvgAsPng(this.$refs.icon, 'download.png', {
         scale: 10,
       })
+    },
+    handleClicked() {
+      this.$emit('click')
     },
   },
 })

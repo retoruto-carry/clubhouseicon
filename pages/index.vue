@@ -25,8 +25,7 @@
               :width="150"
               :icon-style="iconStyle"
               class="mx-auto"
-            >
-            </Icon>
+            />
             <input
               class="hidden"
               type="file"
@@ -46,7 +45,12 @@
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🎨</span> スタイル</h2>
-          Coming soon...
+          <IconStyleSelector
+            v-model="iconStyle"
+            class="mt-2"
+            :text="text"
+            :url="url"
+          />
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🖼</span> ボーダー</h2>
