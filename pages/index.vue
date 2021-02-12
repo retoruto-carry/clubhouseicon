@@ -50,6 +50,8 @@
             class="mt-2"
             :text="text"
             :url="url"
+            :border-color="borderColor"
+            :border-width="shouldShowBorder ? borderWidth : 0"
           />
         </section>
         <section class="mt-8">

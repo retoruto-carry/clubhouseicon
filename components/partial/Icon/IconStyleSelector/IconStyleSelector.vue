@@ -3,12 +3,13 @@
     <SelectableIconStyle
       v-for="iconStyle in iconStyles"
       :key="iconStyle"
-      ref="icon"
       value="selectedIconStyle"
       class="inline mr-2"
       :icon-style="iconStyle"
       :url="url"
       :text="text"
+      :border-color="borderColor"
+      :border-width="borderWidth"
       @input="$emit('input', $event)"
     />
   </div>
@@ -36,6 +37,14 @@ export default Vue.extend({
     url: {
       type: String,
       default: '',
+    },
+    borderColor: {
+      type: String,
+      default: '',
+    },
+    borderWidth: {
+      type: Number,
+      default: 0,
     },
   },
   data(): LocalData {
