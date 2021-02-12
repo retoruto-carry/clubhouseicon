@@ -49,13 +49,16 @@
               <span class="mr-2">🎨</span> スタイル
               <small><small class="ml-2">（追加中）</small></small>
             </h2>
-            <IconStyleSelector
-              v-model="iconStyle"
+            <IconStyleSettingForm
+              :icon-style="iconStyle"
+              :icon-style-option="iconStyleOption"
               class="mt-2"
               :text="text"
               :url="url"
               :border-color="borderColor"
               :border-width="shouldShowBorder ? borderWidth : 0"
+              @updateIconStyle="updateIconStyle"
+              @updateIconStyleOption="updateIconStyleOption"
             />
           </section>
         </transition>
@@ -90,6 +93,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { IconStyle } from '~/components/partial/Icon/Icon.vue'
+import { IconStyleOption } from '~/components/partial/Icon/IconStyleSettingForm/IconStyleSettingForm.vue'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
@@ -103,6 +107,7 @@ type LocalData = {
   shouldShowBorder: boolean
   shouldShowStyle: boolean
   iconStyle: IconStyle
+  iconStyleOption: IconStyleOption | null
 }
 
 export default Vue.extend({
@@ -116,9 +121,16 @@ export default Vue.extend({
       shouldShowBorder: true,
       shouldShowStyle: false,
       iconStyle: 'None',
+      iconStyleOption: null,
     }
   },
   methods: {
+    updateIconStyle(iconStyle: IconStyle) {
+      this.iconStyle = iconStyle
+    },
+    updateIconStyleOption(iconStyleOption: IconStyleOption) {
+      this.iconStyleOption = iconStyleOption
+    },
     handleInputImage(e: HTMLInputEvent) {
       if (!e.target.files?.length) {
         return

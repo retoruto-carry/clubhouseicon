@@ -1,21 +1,21 @@
 <template>
   <div>
-    <SelectableIconStyle
-      v-for="iconStyle in iconStyles"
-      :key="iconStyle"
-      :value="value"
-      :icon-style="iconStyle"
-      :url="url"
+    <IconStyleSelector
+      :value="iconStyle"
+      :icon-styles="iconStyles"
+      class="mt-2"
       :text="text"
+      :url="url"
       :border-color="borderColor"
       :border-width="borderWidth"
-      @input="$emit('input', $event)"
+      @input="updateIconStyle"
     />
     <component
-      :is="form.component"
+      :is="iconStyleOptionForms[iconStyle]"
       v-for="(form, key) in iconStyleOptionForms"
       :key="key"
-      v-model="form.option"
+      :value="form.option"
+      @input="updateIconStyleOption"
     />
   </div>
 </template>
@@ -27,7 +27,7 @@ import BlackFilterWhiteTextIconStyleOptionForm, {
   Option as BlackFilterWhiteTextIconStyleOption,
 } from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
 
-type IconStyleOption = BlackFilterWhiteTextIconStyleOption
+export type IconStyleOption = BlackFilterWhiteTextIconStyleOption
 
 type LocalData = {
   iconStyles: IconStyle[]
@@ -41,7 +41,7 @@ type LocalData = {
 
 export default Vue.extend({
   props: {
-    value: {
+    iconStyle: {
       type: String as PropType<IconStyle>,
       required: true,
     },
@@ -86,6 +86,14 @@ export default Vue.extend({
         },
       },
     }
+  },
+  methods: {
+    updateIconStyle(iconStyle: IconStyle) {
+      this.$emit('updateIconStyle', iconStyle)
+    },
+    updateIconStyleOption(iconStyleOption: IconStyleOption) {
+      this.$emit('updateIconStyleOption', iconStyleOption)
+    },
   },
 })
 </script>
