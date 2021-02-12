@@ -5,7 +5,6 @@
         <h1 class="text-xl md:text-2xl">
           <span class="mr-2">👋 </span>Clubhouse アイコンメーカー
         </h1>
-        <p class="text-center text-xm">(現在開発中)</p>
       </header>
       <main class="mt-4">
         <section>
