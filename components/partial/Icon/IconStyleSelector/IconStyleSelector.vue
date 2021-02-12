@@ -19,7 +19,6 @@ import Vue, { PropType } from 'vue'
 import { IconStyle } from '~/components/partial/Icon/Icon.vue'
 
 type LocalData = {
-  selectedIconStyle: IconStyle
   iconStyles: IconStyle[]
 }
 
@@ -48,7 +47,6 @@ export default Vue.extend({
   },
   data(): LocalData {
     return {
-      selectedIconStyle: 'BlackFilterWhiteText',
       iconStyles: ['None', 'BlackFilterWhiteText', 'WhiteFilterBlackText'],
     }
   },

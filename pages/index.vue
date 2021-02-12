@@ -41,7 +41,7 @@
             class="w-full h-10 px-3 mt-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"
             type="text"
             placeholder="聞き専"
-            @focus="showStyle"
+            @input="showStyle"
           />
         </section>
         <section v-if="shouldShowStyle" class="mt-8">
@@ -59,11 +59,17 @@
           />
         </section>
         <section class="mt-8">
-          <h2 class="heading"><span class="mr-2">🖼</span> ボーダー</h2>
-          <AppSwitch v-model="shouldShowBorder" />
+          <h2 class="inline heading"><span class="mr-2">🖼</span> ボーダー</h2>
+          <AppSwitch v-model="shouldShowBorder" class="inline ml-2" />
           <template v-if="shouldShowBorder">
-            <input v-model="borderColor" type="color" />
-            <input v-model="borderWidth" type="range" min="5" max="12" />
+            <input v-model="borderColor" type="color" class="block" />
+            <input
+              v-model="borderWidth"
+              type="range"
+              min="5"
+              max="12"
+              class="block"
+            />
           </template>
         </section>
         <section class="mt-8 text-center">
@@ -108,7 +114,7 @@ export default Vue.extend({
       isLoading: false,
       shouldShowBorder: true,
       shouldShowStyle: false,
-      iconStyle: 'BlackFilterWhiteText',
+      iconStyle: 'None',
     }
   },
   methods: {
@@ -127,6 +133,7 @@ export default Vue.extend({
     },
     showStyle() {
       this.shouldShowStyle = true
+      this.iconStyle = 'BlackFilterWhiteText'
     },
   },
 })
