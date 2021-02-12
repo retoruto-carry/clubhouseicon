@@ -44,20 +44,22 @@
             @input="showStyle"
           />
         </section>
-        <section v-if="shouldShowStyle" class="mt-8">
-          <h2 class="heading">
-            <span class="mr-2">🎨</span> スタイル
-            <small><small class="ml-2">（追加中）</small></small>
-          </h2>
-          <IconStyleSelector
-            v-model="iconStyle"
-            class="mt-2"
-            :text="text"
-            :url="url"
-            :border-color="borderColor"
-            :border-width="shouldShowBorder ? borderWidth : 0"
-          />
-        </section>
+        <transition name="fade">
+          <section v-if="shouldShowStyle" class="mt-8">
+            <h2 class="heading">
+              <span class="mr-2">🎨</span> スタイル
+              <small><small class="ml-2">（追加中）</small></small>
+            </h2>
+            <IconStyleSelector
+              v-model="iconStyle"
+              class="mt-2"
+              :text="text"
+              :url="url"
+              :border-color="borderColor"
+              :border-width="shouldShowBorder ? borderWidth : 0"
+            />
+          </section>
+        </transition>
         <section class="mt-8">
           <h2 class="inline heading"><span class="mr-2">🖼</span> ボーダー</h2>
           <AppSwitch v-model="shouldShowBorder" class="inline ml-2" />
@@ -145,5 +147,13 @@ export default Vue.extend({
 }
 .iconFileInput {
   width: 150px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
