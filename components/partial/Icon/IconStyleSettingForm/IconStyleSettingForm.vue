@@ -11,10 +11,8 @@
       @input="updateIconStyle"
     />
     <component
-      :is="iconStyleOptionForms[iconStyle]"
-      v-for="(form, key) in iconStyleOptionForms"
-      :key="key"
-      :value="form.option"
+      :is="iconStyleOptionForms[iconStyle].component"
+      :value="iconStyleOptionForms[iconStyle].option"
       @input="updateIconStyleOption"
     />
   </div>
@@ -26,8 +24,14 @@ import { IconStyle } from '~/components/partial/Icon/Icon.vue'
 import BlackFilterWhiteTextIconStyleOptionForm, {
   Option as BlackFilterWhiteTextIconStyleOption,
 } from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
+import WhiteFilterBlackTextIconStyleOptionForm, {
+  Option as WhiteFilterBlackTextIconStyleOption,
+} from '~/components/partial/Icon/styles/WhiteFilterBlackText/IconStyleOptionForm.vue'
 
-export type IconStyleOption = BlackFilterWhiteTextIconStyleOption
+export type IconStyleOption =
+  | BlackFilterWhiteTextIconStyleOption
+  | WhiteFilterBlackTextIconStyleOption
+  | null
 
 type LocalData = {
   iconStyles: IconStyle[]
@@ -43,6 +47,10 @@ export default Vue.extend({
   props: {
     iconStyle: {
       type: String as PropType<IconStyle>,
+      required: true,
+    },
+    iconStyleOption: {
+      type: Object as PropType<IconStyleOption>,
       required: true,
     },
     text: {
@@ -67,10 +75,8 @@ export default Vue.extend({
       iconStyles: ['None', 'BlackFilterWhiteText', 'WhiteFilterBlackText'],
       iconStyleOptionForms: {
         None: {
-          component: BlackFilterWhiteTextIconStyleOptionForm,
-          option: {
-            fontColor: '#000',
-          },
+          component: null,
+          option: null,
         },
         BlackFilterWhiteText: {
           component: BlackFilterWhiteTextIconStyleOptionForm,
@@ -79,9 +85,9 @@ export default Vue.extend({
           },
         },
         WhiteFilterBlackText: {
-          component: BlackFilterWhiteTextIconStyleOptionForm,
+          component: WhiteFilterBlackTextIconStyleOptionForm,
           option: {
-            fontColor: '#000',
+            fontColor: '#fff',
           },
         },
       },

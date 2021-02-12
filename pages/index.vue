@@ -107,7 +107,7 @@ type LocalData = {
   shouldShowBorder: boolean
   shouldShowStyle: boolean
   iconStyle: IconStyle
-  iconStyleOption: IconStyleOption | null
+  iconStyleOption: IconStyleOption
 }
 
 export default Vue.extend({
