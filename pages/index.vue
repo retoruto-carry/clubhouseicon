@@ -1,11 +1,11 @@
 <template>
-  <div class="container mx-auto py-8 px-8">
+  <div class="container px-8 py-8 mx-auto">
     <div>
       <header>
-        <h1 class="md:text-2xl text-xl">
+        <h1 class="text-xl md:text-2xl">
           <span class="mr-2">👋 </span>Clubhouse アイコンメーカー
         </h1>
-        <p class="text-xm text-center">(現在開発中)</p>
+        <p class="text-center text-xm">(現在開発中)</p>
       </header>
       <main class="mt-4">
         <section>
@@ -23,6 +23,7 @@
               :border-color="borderColor"
               :border-width="shouldShowBorder ? borderWidth : 0"
               :width="150"
+              :icon-style="iconStyle"
               class="mx-auto"
             />
             <input
@@ -37,14 +38,21 @@
           <h2 class="heading"><span class="mr-2">✏</span> テキスト</h2>
           <input
             v-model="text"
-            class="w-full h-10 px-3 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline mt-2"
+            class="w-full h-10 px-3 mt-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"
             type="text"
             placeholder="聞き専"
           />
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🎨</span> スタイル</h2>
-          Coming soon...
+          <IconStyleSelector
+            v-model="iconStyle"
+            class="mt-2"
+            :text="text"
+            :url="url"
+            :border-color="borderColor"
+            :border-width="shouldShowBorder ? borderWidth : 0"
+          />
         </section>
         <section class="mt-8">
           <h2 class="heading"><span class="mr-2">🖼</span> ボーダー</h2>
@@ -70,6 +78,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { IconStyle } from '~/components/partial/Icon/Icon.vue'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
@@ -81,6 +90,7 @@ type LocalData = {
   borderWidth: number
   isLoading: boolean
   shouldShowBorder: boolean
+  iconStyle: IconStyle
 }
 
 export default Vue.extend({
@@ -92,6 +102,7 @@ export default Vue.extend({
       borderWidth: 8,
       isLoading: false,
       shouldShowBorder: true,
+      iconStyle: 'BlackFilterWhiteText',
     }
   },
   methods: {
