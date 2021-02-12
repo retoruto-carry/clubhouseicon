@@ -3,8 +3,7 @@
     <SelectableIconStyle
       v-for="iconStyle in iconStyles"
       :key="iconStyle"
-      value="selectedIconStyle"
-      class="inline mr-2"
+      :value="value"
       :icon-style="iconStyle"
       :url="url"
       :text="text"
@@ -20,7 +19,6 @@ import Vue, { PropType } from 'vue'
 import { IconStyle } from '~/components/partial/Icon/Icon.vue'
 
 type LocalData = {
-  selectedIconStyle: IconStyle
   iconStyles: IconStyle[]
 }
 
@@ -49,8 +47,7 @@ export default Vue.extend({
   },
   data(): LocalData {
     return {
-      selectedIconStyle: 'BlackFilterWhiteText',
-      iconStyles: ['BlackFilterWhiteText', 'WhiteFilterBlackText'],
+      iconStyles: ['None', 'BlackFilterWhiteText', 'WhiteFilterBlackText'],
     }
   },
 })

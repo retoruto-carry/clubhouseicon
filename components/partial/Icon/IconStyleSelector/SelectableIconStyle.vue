@@ -1,9 +1,11 @@
 <template>
   <Icon
     ref="icon"
+    :class="selected ? 'border-2 border-white rounded' : ''"
+    class="inline mr-2"
     :url="url"
     :text="text"
-    :width="60"
+    :width="70"
     :icon-style="iconStyle"
     :border-color="borderColor"
     :border-width="borderWidth"

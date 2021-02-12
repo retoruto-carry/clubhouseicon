@@ -1,5 +1,5 @@
 <template>
-  <use xlink:href="#ellipse-path" fill="#ffffff" fill-opacity="0.25" />
+  <use xlink:href="#ellipse-path" fill="#ffffff" fill-opacity="0.2" />
 </template>
 
 <script lang="ts">

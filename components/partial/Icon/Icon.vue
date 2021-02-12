@@ -91,6 +91,7 @@ export default Vue.extend({
           innerImageLayer = WhiteFilterBlackTextInnerImageLayer
           break
         case 'None':
+          innerImageLayer = null
           break
       }
       return innerImageLayer
@@ -105,6 +106,7 @@ export default Vue.extend({
           topLayer = WhiteFilterBlackTextTopLayer
           break
         case 'None':
+          topLayer = null
           break
       }
       return topLayer

@@ -1,11 +1,11 @@
 <template>
   <div
-    class="w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 duration-300 ease-in-out"
+    class="inline-flex items-center w-12 h-6 p-1 duration-300 ease-in-out bg-gray-300 rounded-full"
     :class="{ 'bg-brand-accent': value }"
     @click="handleToggle"
   >
     <div
-      class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out"
+      class="w-4 h-4 duration-300 ease-in-out transform bg-white rounded-full shadow-md"
       :class="{ 'translate-x-6': value }"
     />
   </div>
