@@ -1,11 +1,14 @@
 <template>
   <Icon
     ref="icon"
+    :class="selected ? 'border-2 border-white rounded' : ''"
+    class="inline mr-2"
     :url="url"
     :text="text"
-    :border-width="0"
-    :width="60"
+    :width="70"
     :icon-style="iconStyle"
+    :border-color="borderColor"
+    :border-width="borderWidth"
     @click="handleClicked"
   />
 </template>
@@ -35,6 +38,14 @@ export default Vue.extend({
     iconStyle: {
       type: String as PropType<IconStyle>,
       required: true,
+    },
+    borderColor: {
+      type: String,
+      default: '',
+    },
+    borderWidth: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {
