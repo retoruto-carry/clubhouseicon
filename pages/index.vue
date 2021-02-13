@@ -49,7 +49,7 @@
               <span class="mr-2">🎨</span> スタイル
               <small><small class="ml-2">（追加中）</small></small>
             </h2>
-            <IconStyleSelector
+            <IconStyleSettingForm
               v-model="iconStyle"
               class="mt-2"
               :text="text"
@@ -83,13 +83,36 @@
           </AppButton>
         </section>
       </main>
+      <AppModal
+        v-show="shouldShowResultModal"
+        class="text-center"
+        @close="handleResultModalClose"
+      >
+        <p class="text-lg font-semibold">
+          <span class="mr-2">🎉</span>完成しました<span class="ml-2">🎉</span>
+        </p>
+        <Icon
+          v-show="url"
+          ref="icon"
+          :url="url"
+          :text="text"
+          :border-color="borderColor"
+          :border-width="shouldShowBorder ? borderWidth : 0"
+          :width="170"
+          :icon-style="iconStyle"
+          class="mx-auto"
+        />
+        <p class="text-sm">Clubhouseのアイコンに設定しよう</p>
+        <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
+        <TwitterButton class="mt-2" />
+      </AppModal>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
+import { IconStyle } from '~/types/icon'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
@@ -103,6 +126,7 @@ type LocalData = {
   shouldShowBorder: boolean
   shouldShowStyle: boolean
   iconStyle: IconStyle
+  shouldShowResultModal: boolean
 }
 
 export default Vue.extend({
@@ -115,7 +139,11 @@ export default Vue.extend({
       isLoading: false,
       shouldShowBorder: true,
       shouldShowStyle: false,
-      iconStyle: 'None',
+      iconStyle: {
+        name: 'None',
+        option: null,
+      },
+      shouldShowResultModal: false,
     }
   },
   methods: {
@@ -131,10 +159,19 @@ export default Vue.extend({
       const icon = this.$refs.icon as any
       await icon.downloadImage()
       this.isLoading = false
+      this.shouldShowResultModal = true
     },
     showStyle() {
       this.shouldShowStyle = true
-      this.iconStyle = 'BlackFilterWhiteText'
+      this.iconStyle = {
+        name: 'BlackFilterWhiteText',
+        option: {
+          fontColor: '#aaa',
+        },
+      }
+    },
+    handleResultModalClose() {
+      this.shouldShowResultModal = false
     },
   },
 })

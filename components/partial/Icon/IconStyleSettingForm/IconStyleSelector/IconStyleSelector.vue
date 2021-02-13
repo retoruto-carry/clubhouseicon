@@ -2,7 +2,7 @@
   <div>
     <SelectableIconStyle
       v-for="iconStyle in iconStyles"
-      :key="iconStyle"
+      :key="iconStyle.name"
       :value="value"
       :icon-style="iconStyle"
       :url="url"
@@ -16,16 +16,16 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
-
-type LocalData = {
-  iconStyles: IconStyle[]
-}
+import { IconStyle } from '~/types/icon'
 
 export default Vue.extend({
   props: {
     value: {
-      type: String as PropType<IconStyle>,
+      type: Object as PropType<IconStyle>,
+      required: true,
+    },
+    iconStyles: {
+      type: Array as PropType<IconStyle[]>,
       required: true,
     },
     text: {
@@ -44,11 +44,6 @@ export default Vue.extend({
       type: Number,
       default: 0,
     },
-  },
-  data(): LocalData {
-    return {
-      iconStyles: ['None', 'BlackFilterWhiteText', 'WhiteFilterBlackText'],
-    }
   },
 })
 </script>

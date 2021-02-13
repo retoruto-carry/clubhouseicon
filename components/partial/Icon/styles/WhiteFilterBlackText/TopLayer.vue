@@ -4,7 +4,7 @@
     y="50"
     text-anchor="middle"
     dominant-baseline="central"
-    style="font-size: 20px; fill: #000; font-weight: bold"
+    style="font-size: 20px; fill: #000; font-weight: bold; opacity: 0.7"
     font-family="sans-serif"
   >
     {{ text }}
