@@ -45,6 +45,8 @@ import BlackFilterWhiteTextInnerImageLayer from '~/components/partial/Icon/style
 import BlackFilterWhiteTextTopLayer from '~/components/partial/Icon/styles/BlackFilterWhiteText/TopLayer.vue'
 import WhiteFilterBlackTextInnerImageLayer from '~/components/partial/Icon/styles/WhiteFilterBlackText/InnerImageLayer.vue'
 import WhiteFilterBlackTextTopLayer from '~/components/partial/Icon/styles/WhiteFilterBlackText/TopLayer.vue'
+import LabelInnerImageLayer from '~/components/partial/Icon/styles/Label/InnerImageLayer.vue'
+import LabelTopLayer from '~/components/partial/Icon/styles/Label/TopLayer.vue'
 import { IconStyle } from '~/types/icon'
 const ssap = require('save-svg-as-png')
 
@@ -90,6 +92,9 @@ export default Vue.extend({
         case 'WhiteFilterBlackText':
           innerImageLayer = WhiteFilterBlackTextInnerImageLayer
           break
+        case 'Label':
+          innerImageLayer = LabelInnerImageLayer
+          break
         case 'None':
           innerImageLayer = null
           break
@@ -105,6 +110,9 @@ export default Vue.extend({
           break
         case 'WhiteFilterBlackText':
           topLayer = WhiteFilterBlackTextTopLayer
+          break
+        case 'Label':
+          topLayer = LabelTopLayer
           break
         case 'None':
           topLayer = null
