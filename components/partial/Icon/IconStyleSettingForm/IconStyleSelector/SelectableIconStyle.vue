@@ -15,12 +15,12 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
+import { IconStyle } from '~/types/icon'
 
 export default Vue.extend({
   props: {
     value: {
-      type: String as PropType<IconStyle>,
+      type: Object as PropType<IconStyle>,
       required: true,
     },
     text: {
@@ -36,7 +36,7 @@ export default Vue.extend({
       default: 100,
     },
     iconStyle: {
-      type: String as PropType<IconStyle>,
+      type: Object as PropType<IconStyle>,
       required: true,
     },
     borderColor: {
@@ -50,7 +50,7 @@ export default Vue.extend({
   },
   computed: {
     selected(): boolean {
-      return this.value === this.iconStyle
+      return this.value.name === this.iconStyle.name
     },
   },
   methods: {

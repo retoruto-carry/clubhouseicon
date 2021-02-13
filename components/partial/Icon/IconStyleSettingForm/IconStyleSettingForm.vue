@@ -1,7 +1,7 @@
 <template>
   <div>
     <IconStyleSelector
-      :value="iconStyle"
+      :value="value"
       :icon-styles="iconStyles"
       class="mt-2"
       :text="text"
@@ -11,46 +11,30 @@
       @input="updateIconStyle"
     />
     <component
-      :is="iconStyleOptionForms[iconStyle].component"
-      :value="iconStyleOptionForms[iconStyle].option"
-      @input="updateIconStyleOption"
+      :is="components[value.name]"
+      :value="value.option"
+      @input="handleUpdateOption"
     />
   </div>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
-import BlackFilterWhiteTextIconStyleOptionForm, {
-  Option as BlackFilterWhiteTextIconStyleOption,
-} from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
-import WhiteFilterBlackTextIconStyleOptionForm, {
-  Option as WhiteFilterBlackTextIconStyleOption,
-} from '~/components/partial/Icon/styles/WhiteFilterBlackText/IconStyleOptionForm.vue'
-
-export type IconStyleOption =
-  | BlackFilterWhiteTextIconStyleOption
-  | WhiteFilterBlackTextIconStyleOption
-  | null
+import BlackFilterWhiteTextIconStyleOptionForm from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
+import WhiteFilterBlackTextIconStyleOptionForm from '~/components/partial/Icon/styles/WhiteFilterBlackText/IconStyleOptionForm.vue'
+import { IconStyle, IconStyleName, IconStyleOption } from '~/types/icon'
 
 type LocalData = {
   iconStyles: IconStyle[]
-  iconStyleOptionForms: {
-    [key in IconStyle]: {
-      component: any // FIXME
-      option: IconStyleOption
-    }
+  components: {
+    [key in IconStyleName]: any
   }
 }
 
 export default Vue.extend({
   props: {
-    iconStyle: {
-      type: String as PropType<IconStyle>,
-      required: true,
-    },
-    iconStyleOption: {
-      type: Object as PropType<IconStyleOption>,
+    value: {
+      type: Object as PropType<IconStyle>,
       required: true,
     },
     text: {
@@ -72,33 +56,42 @@ export default Vue.extend({
   },
   data(): LocalData {
     return {
-      iconStyles: ['None', 'BlackFilterWhiteText', 'WhiteFilterBlackText'],
-      iconStyleOptionForms: {
-        None: {
-          component: null,
+      components: {
+        None: null,
+        BlackFilterWhiteText: BlackFilterWhiteTextIconStyleOptionForm,
+        WhiteFilterBlackText: WhiteFilterBlackTextIconStyleOptionForm,
+      },
+      iconStyles: [
+        {
+          name: 'None',
           option: null,
         },
-        BlackFilterWhiteText: {
-          component: BlackFilterWhiteTextIconStyleOptionForm,
+        {
+          name: 'BlackFilterWhiteText',
           option: {
             fontColor: '#000',
           },
         },
-        WhiteFilterBlackText: {
-          component: WhiteFilterBlackTextIconStyleOptionForm,
+        {
+          name: 'WhiteFilterBlackText',
           option: {
             fontColor: '#fff',
           },
         },
-      },
+      ],
     }
   },
   methods: {
     updateIconStyle(iconStyle: IconStyle) {
-      this.$emit('updateIconStyle', iconStyle)
+      this.$emit('input', iconStyle)
     },
-    updateIconStyleOption(iconStyleOption: IconStyleOption) {
-      this.$emit('updateIconStyleOption', iconStyleOption)
+    handleUpdateOption(iconStyleOption: IconStyleOption) {
+      const iconStyle = this.iconStyles.find(
+        (iconStyle) => iconStyle.name === this.value.name
+      )
+      if (!iconStyle) return
+      iconStyle.option = iconStyleOption
+      this.$emit('input', iconStyle)
     },
   },
 })

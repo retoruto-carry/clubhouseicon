@@ -9,31 +9,28 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
+import { IconStyleOption } from '~/types/icon'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
 }
 
-export type Option = {
-  fontColor: string
-}
-
 export default Vue.extend({
   props: {
     value: {
-      type: Object as PropType<Option>,
+      type: Object as PropType<IconStyleOption>,
       required: true,
     },
   },
   data() {
     return {
-      data: this.value,
+      localValue: this.value,
     }
   },
   methods: {
     handleUpdateFontColor(event: HTMLInputEvent) {
-      this.data.fontColor = event.target.value as string
-      this.$emit('input', this.data)
+      this.localValue!.fontColor = event.target.value as string
+      this.$emit('input', this.localValue)
     },
   },
 })

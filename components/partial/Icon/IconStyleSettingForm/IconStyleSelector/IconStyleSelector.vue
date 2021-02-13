@@ -2,7 +2,7 @@
   <div>
     <SelectableIconStyle
       v-for="iconStyle in iconStyles"
-      :key="iconStyle"
+      :key="iconStyle.name"
       :value="value"
       :icon-style="iconStyle"
       :url="url"
@@ -16,12 +16,12 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
+import { IconStyle } from '~/types/icon'
 
 export default Vue.extend({
   props: {
     value: {
-      type: String as PropType<IconStyle>,
+      type: Object as PropType<IconStyle>,
       required: true,
     },
     iconStyles: {

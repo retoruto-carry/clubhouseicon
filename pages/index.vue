@@ -50,15 +50,12 @@
               <small><small class="ml-2">（追加中）</small></small>
             </h2>
             <IconStyleSettingForm
-              :icon-style="iconStyle"
-              :icon-style-option="iconStyleOption"
+              v-model="iconStyle"
               class="mt-2"
               :text="text"
               :url="url"
               :border-color="borderColor"
               :border-width="shouldShowBorder ? borderWidth : 0"
-              @updateIconStyle="updateIconStyle"
-              @updateIconStyleOption="updateIconStyleOption"
             />
           </section>
         </transition>
@@ -92,8 +89,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
-import { IconStyleOption } from '~/components/partial/Icon/IconStyleSettingForm/IconStyleSettingForm.vue'
+import { IconStyle } from '~/types/icon'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
@@ -107,7 +103,6 @@ type LocalData = {
   shouldShowBorder: boolean
   shouldShowStyle: boolean
   iconStyle: IconStyle
-  iconStyleOption: IconStyleOption
 }
 
 export default Vue.extend({
@@ -120,17 +115,13 @@ export default Vue.extend({
       isLoading: false,
       shouldShowBorder: true,
       shouldShowStyle: false,
-      iconStyle: 'None',
-      iconStyleOption: null,
+      iconStyle: {
+        name: 'None',
+        option: null,
+      },
     }
   },
   methods: {
-    updateIconStyle(iconStyle: IconStyle) {
-      this.iconStyle = iconStyle
-    },
-    updateIconStyleOption(iconStyleOption: IconStyleOption) {
-      this.iconStyleOption = iconStyleOption
-    },
     handleInputImage(e: HTMLInputEvent) {
       if (!e.target.files?.length) {
         return
@@ -146,7 +137,12 @@ export default Vue.extend({
     },
     showStyle() {
       this.shouldShowStyle = true
-      this.iconStyle = 'BlackFilterWhiteText'
+      this.iconStyle = {
+        name: 'BlackFilterWhiteText',
+        option: {
+          fontColor: '#aaa',
+        },
+      }
     },
   },
 })
