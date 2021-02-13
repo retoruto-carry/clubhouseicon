@@ -49,7 +49,7 @@
               <span class="mr-2">🎨</span> スタイル
               <small><small class="ml-2">（追加中）</small></small>
             </h2>
-            <IconStyleSelector
+            <IconStyleSettingForm
               v-model="iconStyle"
               class="mt-2"
               :text="text"
@@ -89,7 +89,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { IconStyle } from '~/components/partial/Icon/Icon.vue'
+import { IconStyle } from '~/types/icon'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
@@ -115,7 +115,10 @@ export default Vue.extend({
       isLoading: false,
       shouldShowBorder: true,
       shouldShowStyle: false,
-      iconStyle: 'None',
+      iconStyle: {
+        name: 'None',
+        option: null,
+      },
     }
   },
   methods: {
@@ -134,7 +137,12 @@ export default Vue.extend({
     },
     showStyle() {
       this.shouldShowStyle = true
-      this.iconStyle = 'BlackFilterWhiteText'
+      this.iconStyle = {
+        name: 'BlackFilterWhiteText',
+        option: {
+          fontColor: '#aaa',
+        },
+      }
     },
   },
 })
