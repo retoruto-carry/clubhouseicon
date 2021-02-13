@@ -10,7 +10,7 @@
       :border-width="borderWidth"
       @input="updateIconStyle"
     />
-    <h2 v-show="components[value.name]" class="mt-2 text-sm">
+    <h2 v-show="components[value.name]" class="mt-4 text-sm font-semibold">
       <span class="mr-2">🔧</span>設定
     </h2>
     <transition name="fade" mode="out-in">
