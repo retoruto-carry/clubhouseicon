@@ -191,7 +191,7 @@ export default Vue.extend({
       this.iconStyle = {
         name: 'BlackFilterWhiteText',
         option: {
-          fontColor: '#aaa',
+          fontColor: '#ffffff',
         },
       }
     },

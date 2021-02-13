@@ -33,9 +33,13 @@
         preserveAspectRatio="xMidYMid slice"
         clip-path="url(#ellipse-clip)"
       />
-      <component :is="innerImageLayer" :text="text" />
+      <component
+        :is="innerImageLayer"
+        :text="text"
+        :style-option="iconStyle.option"
+      />
     </svg>
-    <component :is="topLayer" :text="text" />
+    <component :is="topLayer" :text="text" :style-option="iconStyle.option" />
   </svg>
 </template>
 
