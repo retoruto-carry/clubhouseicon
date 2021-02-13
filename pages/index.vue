@@ -1,12 +1,12 @@
 <template>
-  <div class="container px-8 py-12 mx-auto">
+  <div class="container px-8 py-10 mx-auto">
     <div>
       <header>
         <h1 class="text-xl font-semibold text-center md:text-2xl">
           <span class="mr-2">👋 </span>Clubhouse アイコンメーカー
         </h1>
       </header>
-      <main class="mt-4">
+      <main class="mt-8">
         <section>
           <label class="cursor-pointer hover:bg-blue">
             <SVGElement
@@ -23,7 +23,7 @@
               :border-width="shouldShowBorder ? borderWidth : 0"
               :width="170"
               :icon-style="iconStyle"
-              class="mx-auto mt-2"
+              class="mx-auto"
             />
             <input
               class="hidden"
@@ -33,7 +33,7 @@
             />
           </label>
         </section>
-        <section class="mt-8">
+        <section class="mt-6">
           <h2 class="heading"><span class="mr-2">✏</span> テキスト</h2>
           <input
             v-model="text"
