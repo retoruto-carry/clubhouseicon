@@ -10,11 +10,13 @@
       :border-width="borderWidth"
       @input="updateIconStyle"
     />
+    <!-- 一旦消しておく
     <component
       :is="components[value.name]"
       :value="value.option"
       @input="handleUpdateOption"
     />
+    -->
   </div>
 </template>
 
