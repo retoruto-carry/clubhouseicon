@@ -10,13 +10,16 @@
       :border-width="borderWidth"
       @input="updateIconStyle"
     />
-    <!-- 一旦消しておく
-    <component
-      :is="components[value.name]"
-      :value="value.option"
-      @input="handleUpdateOption"
-    />
-    -->
+    <h2 v-show="components[value.name]" class="mt-2 text-sm">
+      <span class="mr-2">🔧</span>設定
+    </h2>
+    <transition name="fade" mode="out-in">
+      <component
+        :is="components[value.name]"
+        :value="value.option"
+        @input="handleUpdateOption"
+      />
+    </transition>
   </div>
 </template>
 
@@ -24,6 +27,7 @@
 import Vue, { PropType } from 'vue'
 import BlackFilterWhiteTextIconStyleOptionForm from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
 import WhiteFilterBlackTextIconStyleOptionForm from '~/components/partial/Icon/styles/WhiteFilterBlackText/IconStyleOptionForm.vue'
+import LabelIconStyleOptionForm from '~/components/partial/Icon/styles/Label/IconStyleOptionForm.vue'
 import { IconStyle, IconStyleName, IconStyleOption } from '~/types/icon'
 
 type LocalData = {
@@ -60,7 +64,7 @@ export default Vue.extend({
     return {
       components: {
         None: null,
-        Label: null,
+        Label: LabelIconStyleOptionForm,
         BlackFilterWhiteText: BlackFilterWhiteTextIconStyleOptionForm,
         WhiteFilterBlackText: WhiteFilterBlackTextIconStyleOptionForm,
       },
@@ -72,19 +76,20 @@ export default Vue.extend({
         {
           name: 'BlackFilterWhiteText',
           option: {
-            fontColor: '#000',
+            fontColor: '#ffffff',
           },
         },
         {
           name: 'WhiteFilterBlackText',
           option: {
-            fontColor: '#fff',
+            fontColor: '#000000',
           },
         },
         {
           name: 'Label',
           option: {
-            fontColor: '#bbb',
+            fontColor: '#ffffff',
+            labelColor: '#0f0f0f',
           },
         },
       ],
@@ -95,13 +100,29 @@ export default Vue.extend({
       this.$emit('input', iconStyle)
     },
     handleUpdateOption(iconStyleOption: IconStyleOption) {
-      const iconStyle = this.iconStyles.find(
-        (iconStyle) => iconStyle.name === this.value.name
-      )
+      const iconStyle = this.find(this.value.name)
       if (!iconStyle) return
       iconStyle.option = iconStyleOption
       this.$emit('input', iconStyle)
     },
+    find(name: string): IconStyle | null {
+      const iconStyle = this.iconStyles.find(
+        (iconStyle) => iconStyle.name === name
+      )
+      if (!iconStyle) return null
+      return iconStyle
+    },
   },
 })
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

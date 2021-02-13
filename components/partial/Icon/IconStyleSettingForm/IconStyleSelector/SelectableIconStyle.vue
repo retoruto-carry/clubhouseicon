@@ -1,7 +1,7 @@
 <template>
   <Icon
     ref="icon"
-    :class="selected ? 'border-2 border-white rounded' : ''"
+    :class="selected ? 'border-2 shadow	border-white rounded' : ''"
     class="inline mr-2"
     :url="url"
     :text="text"

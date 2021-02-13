@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-x-scroll whitespace-no-wrap">
     <SelectableIconStyle
       v-for="iconStyle in iconStyles"
       :key="iconStyle.name"

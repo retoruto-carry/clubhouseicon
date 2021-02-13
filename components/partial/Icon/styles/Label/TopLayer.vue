@@ -6,7 +6,7 @@
       y="50"
       text-anchor="middle"
       dominant-baseline="central"
-      :style="`font-size: 20px; fill: #000; font-weight: bold; opacity: 0`"
+      :style="`font-size: 20px; fill: ${styleOption.labelColor}; font-weight: bold; opacity: 0`"
       font-family="sans-serif"
     >
       {{ text }}
@@ -19,7 +19,7 @@
         x="0"
         y="0"
         rx="8"
-        fill="black"
+        :fill="styleOption.labelColor"
         fill-opacity="0.6"
       />
       <text
@@ -28,7 +28,7 @@
         :y="(fontSize + 14) / 2"
         text-anchor="middle"
         dominant-baseline="central"
-        :style="`font-size: ${fontSize}px; fill: #fff; font-weight: bold;`"
+        :style="`font-size: ${fontSize}px; fill: ${styleOption.fontColor}; font-weight: bold;`"
         font-family="sans-serif"
       >
         {{ text }}
@@ -38,7 +38,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
+import { LabelIconStyleOption } from '~/types/icon'
 
 type LocalData = {
   fontSize: number
@@ -46,6 +47,10 @@ type LocalData = {
 
 export default Vue.extend({
   props: {
+    styleOption: {
+      type: Object as PropType<LabelIconStyleOption>,
+      required: true,
+    },
     text: {
       type: String,
       default: '',

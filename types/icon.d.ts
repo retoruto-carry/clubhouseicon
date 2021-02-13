@@ -18,6 +18,7 @@ export type WhiteFilterBlackTextIconStyle = {
 
 export type LabelIconStyleName = 'Label'
 export type LabelIconStyleOption = {
+  labelColor: string
   fontColor: string
 }
 export type LabelIconStyle = {

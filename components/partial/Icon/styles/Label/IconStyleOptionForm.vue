@@ -7,12 +7,19 @@
       type="color"
       @input="handleUpdateFontColor"
     />
+    <h3 class="inline-block ml-2 text-xs">ラベルの色</h3>
+    <input
+      class="align-bottom"
+      :value="value.labelColor"
+      type="color"
+      @input="handleUpdateLabelColor"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import { WhiteFilterBlackTextIconStyleOption } from '~/types/icon'
+import { LabelIconStyleOption } from '~/types/icon'
 
 type HTMLInputEvent = Event & {
   target: HTMLInputElement & EventTarget
@@ -21,7 +28,7 @@ type HTMLInputEvent = Event & {
 export default Vue.extend({
   props: {
     value: {
-      type: Object as PropType<WhiteFilterBlackTextIconStyleOption>,
+      type: Object as PropType<LabelIconStyleOption>,
       required: true,
     },
   },
@@ -34,6 +41,11 @@ export default Vue.extend({
     handleUpdateFontColor(event: HTMLInputEvent) {
       this.localValue!.fontColor = event.target.value as string
       this.$emit('input', this.localValue)
+    },
+    handleUpdateLabelColor(event: HTMLInputEvent) {
+      this.localValue!.labelColor = event.target.value as string
+      this.$emit('input', this.localValue)
+      console.log(this.localValue)
     },
   },
 })

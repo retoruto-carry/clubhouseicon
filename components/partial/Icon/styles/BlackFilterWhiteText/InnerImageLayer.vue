@@ -18,7 +18,7 @@
       y="50"
       text-anchor="middle"
       dominant-baseline="central"
-      :style="`font-size: ${fontSize}px; fill: #fff; font-weight: bold`"
+      :style="`font-size: ${fontSize}px; fill: ${styleOption.fontColor}; font-weight: bold`"
       font-family="sans-serif"
     >
       {{ text }}
@@ -27,7 +27,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
+import { BlackFilterWhiteTextIconStyleOption } from '~/types/icon'
 
 type LocalData = {
   fontSize: number
@@ -38,6 +39,10 @@ export default Vue.extend({
     text: {
       type: String,
       default: '',
+    },
+    styleOption: {
+      type: Object as PropType<BlackFilterWhiteTextIconStyleOption>,
+      required: true,
     },
   },
   data(): LocalData {
