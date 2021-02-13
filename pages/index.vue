@@ -54,10 +54,7 @@
         </section>
         <transition name="fade">
           <section v-if="shouldShowStyle" class="mt-8">
-            <h2 class="heading">
-              <span class="mr-2">🎨</span> スタイル
-              <small><small class="ml-2">（追加中）</small></small>
-            </h2>
+            <h2 class="heading"><span class="mr-2">🎨</span> スタイル</h2>
             <IconStyleSettingForm
               v-model="iconStyle"
               class="mt-2"
@@ -72,14 +69,18 @@
           <h2 class="inline heading"><span class="mr-2">🖼</span> ボーダー</h2>
           <AppSwitch v-model="shouldShowBorder" class="inline ml-2" />
           <template v-if="shouldShowBorder">
-            <input v-model="borderColor" type="color" class="block" />
-            <input
-              v-model="borderWidth"
-              type="range"
-              min="5"
-              max="12"
-              class="block"
-            />
+            <div>
+              <h3 class="inline-block text-xs">色</h3>
+              <input v-model="borderColor" type="color" class="align-bottom" />
+              <h3 class="inline-block ml-2 text-xs">幅</h3>
+              <input
+                v-model="borderWidth"
+                type="range"
+                min="5"
+                max="12"
+                class="align-middle"
+              />
+            </div>
           </template>
         </section>
         <section class="mt-8 text-center">

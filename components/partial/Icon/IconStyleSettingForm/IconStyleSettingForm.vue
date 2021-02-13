@@ -27,6 +27,7 @@
 import Vue, { PropType } from 'vue'
 import BlackFilterWhiteTextIconStyleOptionForm from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
 import WhiteFilterBlackTextIconStyleOptionForm from '~/components/partial/Icon/styles/WhiteFilterBlackText/IconStyleOptionForm.vue'
+import LabelIconStyleOptionForm from '~/components/partial/Icon/styles/Label/IconStyleOptionForm.vue'
 import { IconStyle, IconStyleName, IconStyleOption } from '~/types/icon'
 
 type LocalData = {
@@ -63,7 +64,7 @@ export default Vue.extend({
     return {
       components: {
         None: null,
-        Label: null,
+        Label: LabelIconStyleOptionForm,
         BlackFilterWhiteText: BlackFilterWhiteTextIconStyleOptionForm,
         WhiteFilterBlackText: WhiteFilterBlackTextIconStyleOptionForm,
       },
@@ -87,7 +88,8 @@ export default Vue.extend({
         {
           name: 'Label',
           option: {
-            fontColor: '#cacaca',
+            fontColor: '#ffffff',
+            labelColor: '#0f0f0f',
           },
         },
       ],
