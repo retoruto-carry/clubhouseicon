@@ -1,6 +1,6 @@
 <template>
   <button
-    class="px-2 py-1 text-xs text-gray-700 bg-white rounded"
+    class="px-2 py-1 text-xs font-semibold text-gray-700 bg-white rounded"
     @click="handleClicked"
   >
     {{ label }}

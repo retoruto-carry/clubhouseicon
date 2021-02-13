@@ -1,12 +1,12 @@
 <template>
-  <div class="container px-8 py-8 mx-auto">
+  <div class="container px-8 py-10 mx-auto">
     <div>
       <header>
-        <h1 class="text-xl md:text-2xl">
+        <h1 class="text-xl font-semibold text-center md:text-2xl">
           <span class="mr-2">👋 </span>Clubhouse アイコンメーカー
         </h1>
       </header>
-      <main class="mt-4">
+      <main class="mt-8">
         <section>
           <label class="cursor-pointer hover:bg-blue">
             <SVGElement
@@ -21,7 +21,7 @@
               :text="text"
               :border-color="borderColor"
               :border-width="shouldShowBorder ? borderWidth : 0"
-              :width="150"
+              :width="170"
               :icon-style="iconStyle"
               class="mx-auto"
             />
@@ -33,13 +33,13 @@
             />
           </label>
         </section>
-        <section class="mt-8">
+        <section class="mt-6">
           <h2 class="heading"><span class="mr-2">✏</span> テキスト</h2>
           <input
             v-model="text"
-            class="w-full h-10 px-3 mt-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"
+            class="w-full h-10 px-3 mt-2 text-sm font-semibold text-gray-700 placeholder-gray-500 border rounded-lg focus:shadow-outline"
             type="text"
-            placeholder="聞き専"
+            placeholder="テキストを入力"
             @input="showStyle"
           />
           <div class="mt-2 overflow-x-scroll whitespace-no-wrap">
@@ -69,7 +69,7 @@
           <h2 class="inline heading"><span class="mr-2">🖼</span> ボーダー</h2>
           <AppSwitch v-model="shouldShowBorder" class="inline ml-2" />
           <template v-if="shouldShowBorder">
-            <div>
+            <div class="mt-2">
               <h3 class="inline-block text-xs">色</h3>
               <input v-model="borderColor" type="color" class="align-bottom" />
               <h3 class="inline-block ml-2 text-xs">幅</h3>
@@ -210,6 +210,7 @@ export default Vue.extend({
 <style scoped>
 .heading {
   @apply text-lg;
+  @apply font-semibold;
 }
 .iconFileInput {
   width: 150px;

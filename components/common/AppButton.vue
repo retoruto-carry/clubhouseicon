@@ -1,6 +1,6 @@
 <template>
   <button
-    class="rounded-full bg-brand-accent text-white py-2 px-8 text-md"
+    class="px-8 py-2 font-semibold text-white rounded-full bg-brand-accent text-md"
     :disabled="isLoading"
     :class="{ 'opacity-50': isLoading }"
     @click="handleClicked"
