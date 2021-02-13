@@ -83,6 +83,29 @@
           </AppButton>
         </section>
       </main>
+      <AppModal
+        v-show="shouldShowResultModal"
+        class="text-center"
+        @close="handleResultModalClose"
+      >
+        <p class="text-lg font-semibold">
+          <span class="mr-2">🎉</span>完成しました<span class="ml-2">🎉</span>
+        </p>
+        <Icon
+          v-show="url"
+          ref="icon"
+          :url="url"
+          :text="text"
+          :border-color="borderColor"
+          :border-width="shouldShowBorder ? borderWidth : 0"
+          :width="170"
+          :icon-style="iconStyle"
+          class="mx-auto"
+        />
+        <p class="text-sm">Clubhouseのアイコンに設定しよう</p>
+        <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
+        <TwitterButton class="mt-2" />
+      </AppModal>
     </div>
   </div>
 </template>
@@ -103,6 +126,7 @@ type LocalData = {
   shouldShowBorder: boolean
   shouldShowStyle: boolean
   iconStyle: IconStyle
+  shouldShowResultModal: boolean
 }
 
 export default Vue.extend({
@@ -119,6 +143,7 @@ export default Vue.extend({
         name: 'None',
         option: null,
       },
+      shouldShowResultModal: false,
     }
   },
   methods: {
@@ -134,6 +159,7 @@ export default Vue.extend({
       const icon = this.$refs.icon as any
       await icon.downloadImage()
       this.isLoading = false
+      this.shouldShowResultModal = true
     },
     showStyle() {
       this.shouldShowStyle = true
@@ -143,6 +169,9 @@ export default Vue.extend({
           fontColor: '#aaa',
         },
       }
+    },
+    handleResultModalClose() {
+      this.shouldShowResultModal = false
     },
   },
 })
