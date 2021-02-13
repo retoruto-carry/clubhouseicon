@@ -60,6 +60,7 @@ export default Vue.extend({
     return {
       components: {
         None: null,
+        Label: null,
         BlackFilterWhiteText: BlackFilterWhiteTextIconStyleOptionForm,
         WhiteFilterBlackText: WhiteFilterBlackTextIconStyleOptionForm,
       },
@@ -78,6 +79,12 @@ export default Vue.extend({
           name: 'WhiteFilterBlackText',
           option: {
             fontColor: '#fff',
+          },
+        },
+        {
+          name: 'Label',
+          option: {
+            fontColor: '#bbb',
           },
         },
       ],
