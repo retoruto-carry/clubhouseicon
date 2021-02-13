@@ -42,6 +42,15 @@
             placeholder="聞き専"
             @input="showStyle"
           />
+          <div class="mt-2 overflow-x-scroll whitespace-no-wrap">
+            <AppSubButton
+              v-for="suggestionText in suggestionTexts"
+              :key="suggestionText"
+              class="mr-2"
+              :label="suggestionText"
+              @click="handleUpdateText(suggestionText)"
+            />
+          </div>
         </section>
         <transition name="fade">
           <section v-if="shouldShowStyle" class="mt-8">
@@ -129,6 +138,16 @@ type LocalData = {
   shouldShowResultModal: boolean
 }
 
+const suggestionTexts = [
+  '聞き専',
+  '離席中',
+  '移動中',
+  '作業中',
+  '仕事中',
+  '話しかけて',
+  'お風呂中',
+]
+
 export default Vue.extend({
   data(): LocalData {
     return {
@@ -146,6 +165,11 @@ export default Vue.extend({
       shouldShowResultModal: false,
     }
   },
+  computed: {
+    suggestionTexts(): string[] {
+      return suggestionTexts
+    },
+  },
   methods: {
     handleInputImage(e: HTMLInputEvent) {
       if (!e.target.files?.length) {
@@ -162,6 +186,7 @@ export default Vue.extend({
       this.shouldShowResultModal = true
     },
     showStyle() {
+      if (this.shouldShowStyle) return
       this.shouldShowStyle = true
       this.iconStyle = {
         name: 'BlackFilterWhiteText',
@@ -172,6 +197,10 @@ export default Vue.extend({
     },
     handleResultModalClose() {
       this.shouldShowResultModal = false
+    },
+    handleUpdateText(text: string) {
+      this.text = text
+      this.showStyle()
     },
   },
 })
