@@ -153,7 +153,7 @@ export default Vue.extend({
     return {
       url: '',
       text: '',
-      borderColor: '#fafafa',
+      borderColor: '#fafad2',
       borderWidth: 8,
       isLoading: false,
       shouldShowBorder: true,
