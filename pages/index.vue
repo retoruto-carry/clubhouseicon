@@ -116,6 +116,11 @@
         <p class="text-sm">Clubhouseのアイコンに設定しよう</p>
         <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
         <TwitterButton class="mt-2" />
+        <div class="mt-8">
+          <p class="font-bold">Safari 保存方法</p>
+          <img src="/images/info/1.png" class="mt-4" />
+          <img src="/images/info/2.png" class="mt-6" />
+        </div>
       </AppModal>
     </div>
   </div>
