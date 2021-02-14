@@ -42,7 +42,7 @@
             placeholder="テキストを入力"
             @input="showStyle"
           />
-          <div class="mt-2 overflow-x-scroll whitespace-no-wrap">
+          <div class="mt-2 overflow-x-auto whitespace-no-wrap">
             <AppSubButton
               v-for="suggestionText in suggestionTexts"
               :key="suggestionText"
