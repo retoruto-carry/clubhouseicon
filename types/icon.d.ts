@@ -28,6 +28,16 @@ export type LabelIconStyle = {
   option: LabelIconStyleOption
 }
 
+export type OutlineTextIconStyleName = 'OutlineText'
+export type OutlineTextIconStyleOption = {
+  outlineColor: string
+  fontColor: string
+}
+export type OutlineTextIconStyle = {
+  name: OutlineTextIconStyleName
+  option: OutlineTextIconStyleOption
+}
+
 export type NoneIconStyleName = 'None'
 export type NoneIconStyleOption = null
 export type NoneIconStyle = {
@@ -39,16 +49,19 @@ export type IconStyle =
   | BlackFilterWhiteTextIconStyle
   | WhiteFilterBlackTextIconStyle
   | LabelIconStyle
+  | OutlineTextIconStyle
   | NoneIconStyle
 
 export type IconStyleOption =
   | BlackFilterWhiteTextIconStyleOption
   | WhiteFilterBlackTextIconStyleOption
   | LabelIconStyleOption
+  | OutlineTextIconStyleOption
   | NoneIconStyleOption
 
 export type IconStyleName =
   | BlackFilterWhiteTextIconStyleName
   | WhiteFilterBlackTextIconStyleName
   | LabelIconStyleName
+  | OutlineTextIconStyleName
   | NoneIconStyleName

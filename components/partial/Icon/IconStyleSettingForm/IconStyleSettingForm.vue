@@ -28,6 +28,7 @@ import Vue, { PropType } from 'vue'
 import BlackFilterWhiteTextIconStyleOptionForm from '~/components/partial/Icon/styles/BlackFilterWhiteText/IconStyleOptionForm.vue'
 import WhiteFilterBlackTextIconStyleOptionForm from '~/components/partial/Icon/styles/WhiteFilterBlackText/IconStyleOptionForm.vue'
 import LabelIconStyleOptionForm from '~/components/partial/Icon/styles/Label/IconStyleOptionForm.vue'
+import OutlineTextIconStyleOptionForm from '~/components/partial/Icon/styles/OutlineText/IconStyleOptionForm.vue'
 import { IconStyle, IconStyleName, IconStyleOption } from '~/types/icon'
 
 type LocalData = {
@@ -67,6 +68,7 @@ export default Vue.extend({
         Label: LabelIconStyleOptionForm,
         BlackFilterWhiteText: BlackFilterWhiteTextIconStyleOptionForm,
         WhiteFilterBlackText: WhiteFilterBlackTextIconStyleOptionForm,
+        OutlineText: OutlineTextIconStyleOptionForm,
       },
       iconStyles: [
         {
@@ -92,6 +94,13 @@ export default Vue.extend({
             labelColor: '#0f0f0f',
             labelSize: 60,
             labelY: 30,
+          },
+        },
+        {
+          name: 'OutlineText',
+          option: {
+            fontColor: '#626060',
+            outlineColor: '#ffffff',
           },
         },
       ],
