@@ -136,7 +136,9 @@ export default Vue.extend({
   methods: {
     async downloadImage() {
       // HACK ライブラリの問題で、Safariでは画像がレンダリングされないことがあるため、svgAsPngUriメソッドを一度先に呼ぶことで回避してる
+      // 1回だとうまくいかないときがある
       // @see https://github.com/exupero/saveSvgAsPng/issues/223#issuecomment-522770217
+      await ssap.svgAsPngUri(this.$refs.icon)
       await ssap.svgAsPngUri(this.$refs.icon)
       const base64EncodedImage: string = await ssap.svgAsPngUri(
         this.$refs.icon,
