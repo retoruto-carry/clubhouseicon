@@ -106,9 +106,6 @@
         <p class="mt-2 text-sm">
           👆 画像を長押しまたは右クリックで画像を保存してください
         </p>
-        <p class="text-xs text-gray-500">
-          画像が表示されないときはもう一度保存してください🙏
-        </p>
         <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
         <TwitterButton class="mt-2" />
       </AppModal>

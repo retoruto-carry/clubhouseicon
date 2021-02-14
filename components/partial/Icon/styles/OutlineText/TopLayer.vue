@@ -64,10 +64,12 @@ export default Vue.extend({
     outlineTextStyle(): string {
       return `stroke-width: ${
         this.fontSize / 4
-      }px; paint-order: stroke; stroke-linejoin: round;`
+      }px; paint-order: stroke; stroke-linejoin: round; font-size: ${
+        this.fontSize
+      }px;`
     },
-    innerTextStyle() {
-      return 'stroke-width: 0;'
+    innerTextStyle(): string {
+      return `stroke-width: 0; font-size: ${this.fontSize}px;`
     },
   },
   mounted() {
