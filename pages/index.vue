@@ -172,7 +172,19 @@ export default Vue.extend({
         return
       }
       const file = e.target.files[0]
-      this.url = window.URL.createObjectURL(file)
+      const reader = new FileReader()
+      const that: any = this
+      reader.addEventListener(
+        'load',
+        function () {
+          that.url = reader.result
+        },
+        false
+      )
+
+      if (file) {
+        reader.readAsDataURL(file)
+      }
     },
     async handleSaveImage() {
       this.isLoading = true
