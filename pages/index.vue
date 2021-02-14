@@ -42,7 +42,7 @@
             placeholder="テキストを入力"
             @input="showStyle"
           />
-          <div class="mt-2 overflow-x-scroll whitespace-no-wrap">
+          <div class="mt-2 overflow-x-auto whitespace-no-wrap">
             <AppSubButton
               v-for="suggestionText in suggestionTexts"
               :key="suggestionText"
@@ -74,11 +74,12 @@
               <input v-model="borderColor" type="color" class="align-bottom" />
               <h3 class="inline-block ml-2 text-xs">幅</h3>
               <input
-                v-model="borderWidth"
+                :value="borderWidth"
                 type="range"
                 min="5"
                 max="12"
                 class="align-middle"
+                @input="handleUpdateBorderWidth"
               />
             </div>
           </template>
@@ -202,6 +203,9 @@ export default Vue.extend({
     handleUpdateText(text: string) {
       this.text = text
       this.showStyle()
+    },
+    handleUpdateBorderWidth(event: HTMLInputEvent) {
+      this.borderWidth = Number(event.target.value as string)
     },
   },
 })

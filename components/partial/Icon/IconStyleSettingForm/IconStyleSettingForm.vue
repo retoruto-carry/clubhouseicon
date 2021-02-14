@@ -90,6 +90,8 @@ export default Vue.extend({
           option: {
             fontColor: '#ffffff',
             labelColor: '#0f0f0f',
+            labelSize: 60,
+            labelY: 30,
           },
         },
       ],
