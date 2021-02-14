@@ -103,8 +103,9 @@
           <span class="mr-2">🎉</span>完成しました<span class="ml-2">🎉</span>
         </p>
         <img :src="resultBase64Image" class="w-48 mx-auto mt-2" />
-        <p class="mt-2 text-sm">👆 画像を長押しまたは右クリックで画像を保存</p>
-        <p class="mt-2 text-sm">Clubhouseのアイコンに設定しよう</p>
+        <p class="mt-2 text-sm">
+          👆 画像を長押しまたは右クリックで画像を保存してください
+        </p>
         <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
         <TwitterButton class="mt-2" />
       </AppModal>
