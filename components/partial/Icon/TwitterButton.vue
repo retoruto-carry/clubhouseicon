@@ -18,7 +18,7 @@ export default Vue.extend({
         'https://twitter.com/intent/tweet?url=' +
         encodeURIComponent(`${process.env.BASE_URL}`) +
         '&hashtags=' +
-        encodeURIComponent('clubhouseicon') +
+        encodeURIComponent('Clubhouseアイコンメーカー') +
         '&text=' +
         encodeURIComponent(
           `Clubhouseアイコンメーカーでアイコンを作りました！みんなも使ってみよう！\r\rClubhouseアイコンメーカー｜枠線や文字付きのアイコンが簡単につくれます`
