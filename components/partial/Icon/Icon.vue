@@ -54,7 +54,7 @@ import LabelTopLayer from '~/components/partial/Icon/styles/Label/TopLayer.vue'
 import OutlineTextInnerImageLayer from '~/components/partial/Icon/styles/OutlineText/InnerImageLayer.vue'
 import OutlineTextTopLayer from '~/components/partial/Icon/styles/OutlineText/TopLayer.vue'
 import { IconStyle } from '~/types/icon'
-const ssap = require('save-svg-as-png')
+import { saveSvgAsPng } from '~/utils/saveSvgAsPng'
 
 export default Vue.extend({
   components: {
@@ -135,18 +135,15 @@ export default Vue.extend({
   },
   methods: {
     async downloadImage() {
-      // HACK ライブラリの問題で、Safariでは画像がレンダリングされないことがあるため、svgAsPngUriメソッドを一度先に呼ぶことで回避してる
-      // 1回だとうまくいかないときがある
-      // @see https://github.com/exupero/saveSvgAsPng/issues/223#issuecomment-522770217
-      await ssap.svgAsPngUri(this.$refs.icon)
-      await ssap.svgAsPngUri(this.$refs.icon)
-      const base64EncodedImage: string = await ssap.svgAsPngUri(
-        this.$refs.icon,
-        {
-          scale: 10,
-        }
-      )
-      return base64EncodedImage
+      const elm = document.getElementById('svg') as HTMLCanvasElement
+      if (!elm) return
+      // HACK: SafariでHEICファイル形式の場合、下記を実行することで画像がレンダリングされないことを回避している
+      // @see https://github.com/exupero/saveSvgAsPng/issues/223 (これが関係あるかは不明)
+      for (let i = 0; i < 10; i++) {
+        await saveSvgAsPng(elm, 1000, 1000)
+      }
+      const base64Url = await saveSvgAsPng(elm, 1000, 1000)
+      return base64Url
     },
     handleClicked() {
       this.$emit('click')
