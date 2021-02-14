@@ -11,7 +11,13 @@
     >
       {{ text }}
     </text>
-    <svg :x="20" :y="15" :width="60" :height="100" viewBox="0 0 100 100">
+    <svg
+      :x="0"
+      :y="styleOption.labelY"
+      :width="100"
+      :height="styleOption.labelSize"
+      viewBox="0 0 100 100"
+    >
       <rect
         width="100"
         :height="fontSize + 14"

@@ -20,6 +20,8 @@ export type LabelIconStyleName = 'Label'
 export type LabelIconStyleOption = {
   labelColor: string
   fontColor: string
+  labelSize: number
+  labelY: number
 }
 export type LabelIconStyle = {
   name: LabelIconStyleName
