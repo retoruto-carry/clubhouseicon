@@ -102,25 +102,11 @@
         <p class="text-lg font-semibold">
           <span class="mr-2">🎉</span>完成しました<span class="ml-2">🎉</span>
         </p>
-        <Icon
-          v-show="url"
-          ref="icon"
-          :url="url"
-          :text="text"
-          :border-color="borderColor"
-          :border-width="shouldShowBorder ? borderWidth : 0"
-          :width="170"
-          :icon-style="iconStyle"
-          class="mx-auto"
-        />
-        <p class="text-sm">Clubhouseのアイコンに設定しよう</p>
+        <img :src="resultBase64Image" class="w-48 mx-auto mt-2" />
+        <p class="mt-2 text-sm">👆 画像を長押しまたは右クリックで画像を保存</p>
+        <p class="mt-2 text-sm">Clubhouseのアイコンに設定しよう</p>
         <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
         <TwitterButton class="mt-2" />
-        <div class="mt-8">
-          <p class="font-bold">Safari 保存方法</p>
-          <img src="/images/info/1.png" class="mt-4" />
-          <img src="/images/info/2.png" class="mt-6" />
-        </div>
       </AppModal>
     </div>
   </div>
@@ -143,6 +129,7 @@ type LocalData = {
   shouldShowStyle: boolean
   iconStyle: IconStyle
   shouldShowResultModal: boolean
+  resultBase64Image: string | null
 }
 
 const suggestionTexts = [
@@ -170,6 +157,7 @@ export default Vue.extend({
         option: null,
       },
       shouldShowResultModal: false,
+      resultBase64Image: null,
     }
   },
   computed: {
@@ -188,7 +176,7 @@ export default Vue.extend({
     async handleSaveImage() {
       this.isLoading = true
       const icon = this.$refs.icon as any
-      await icon.downloadImage()
+      this.resultBase64Image = await icon.downloadImage()
       this.isLoading = false
       this.shouldShowResultModal = true
     },
