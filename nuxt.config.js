@@ -79,6 +79,21 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          { code: 'ja', iso: 'ja_JP', name: '日本語' },
+          { code: 'en', iso: 'en-US', name: 'English' },
+        ],
+        defaultLocale: 'ja',
+        strategy: 'no_prefix',
+        vueI18n: {
+          fallbackLocale: 'ja',
+        },
+        vueI18nLoader: true,
+      },
+    ],
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

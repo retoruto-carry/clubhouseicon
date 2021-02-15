@@ -3,7 +3,7 @@
     <div>
       <header>
         <h1 class="text-xl font-semibold text-center md:text-2xl">
-          <span class="mr-2">👋 </span>Clubhouse アイコンメーカー
+          <span class="mr-2">👋 </span>{{ $t('title') }}
         </h1>
       </header>
       <main class="mt-8">
@@ -112,6 +112,17 @@
     </div>
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "title": "Clubhouse アイコンメーカー"
+  },
+  "en": {
+    "title": "Clubhouse Icon Maker"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue from 'vue'
