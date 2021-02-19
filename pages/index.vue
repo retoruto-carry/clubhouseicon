@@ -11,8 +11,13 @@
         <section>
           <label class="cursor-pointer hover:bg-blue">
             <SVGElement
-              v-show="!url"
-              name="selectPhoto"
+              v-show="!url && $i18n.locale === 'ja'"
+              name="selectPhotoJa"
+              class="mx-auto iconFileInput"
+            />
+            <SVGElement
+              v-show="!url && $i18n.locale === 'en'"
+              name="selectPhotoEn"
               class="mx-auto iconFileInput"
             />
             <Icon
