@@ -277,6 +277,37 @@ export default Vue.extend({
       this.borderWidth = Number(event.target.value as string)
     },
   },
+  head() {
+    const lang = this.$route.query.lang || 'en'
+    const baseName =
+      lang === 'ja' ? 'Clubhouseアイコンメーカー' : 'Clubhouse Icon Maker'
+    const baseDesc =
+      lang === 'ja'
+        ? '枠線や文字付きのアイコンが簡単につくれます'
+        : 'Create icons with border and text'
+    return {
+      title: baseName,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: baseDesc,
+        },
+        { hid: 'og:site_name', property: 'og:site_name', content: baseName },
+        { hid: 'og:title', property: 'og:title', content: baseName },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: baseDesc,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${process.env.BASE_URL}/images/ogp/${lang}.png`,
+        },
+      ],
+    }
+  },
 })
 </script>
 

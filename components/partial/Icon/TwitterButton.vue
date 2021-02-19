@@ -31,7 +31,9 @@ export default Vue.extend({
     twitterShareUrl(): string {
       return (
         'https://twitter.com/intent/tweet?url=' +
-        encodeURIComponent(`${process.env.BASE_URL}`) +
+        encodeURIComponent(
+          `${process.env.BASE_URL}?lang=${this.$i18n.locale}`
+        ) +
         '&hashtags=' +
         encodeURIComponent(`${this.$t('title')}`) +
         '&text=' +

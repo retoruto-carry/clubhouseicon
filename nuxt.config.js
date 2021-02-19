@@ -1,7 +1,7 @@
 require('dotenv').config()
 
-const baseName = 'Clubhouseアイコンメーカー'
-const baseDesc = '枠線や文字付きのアイコンが簡単につくれます'
+const baseName = 'Clubhouse Icon Maker'
+const baseDesc = 'Create icons with border and text'
 const baseUrl = process.env.BASE_URL
 
 export default {
