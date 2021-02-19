@@ -6,7 +6,7 @@
       y="50"
       text-anchor="middle"
       dominant-baseline="central"
-      :style="`font-size: 20px; fill: #000; font-weight: bold; opacity: 0`"
+      :style="`font-size: 22px; fill: #000; font-weight: bold; opacity: 0`"
       font-family="sans-serif"
     >
       {{ text }}
@@ -85,8 +85,8 @@ export default Vue.extend({
       const showTextBox = this.$refs.showTextBox as any
       const measurementTextBoxBBox = measurementTextBox.getBBox()
       const showTextBoxBBox = showTextBox.getBBox()
-      if (measurementTextBoxBBox.width > 98) {
-        if (showTextBoxBBox.width > 98) this.fontSize = this.fontSize - 2
+      if (measurementTextBoxBBox.width > 96) {
+        if (showTextBoxBBox.width > 96) this.fontSize = this.fontSize - 2
       } else {
         this.fontSize = 20
       }

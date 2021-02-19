@@ -3,15 +3,21 @@
     <div>
       <header>
         <h1 class="text-xl font-semibold text-center md:text-2xl">
-          <span class="mr-2">👋 </span>Clubhouse アイコンメーカー
+          <span class="mr-2">👋 </span>{{ $t('title') }}
         </h1>
+        <TranslateSwitch class="mt-2" />
       </header>
-      <main class="mt-8">
+      <main class="mt-6">
         <section>
           <label class="cursor-pointer hover:bg-blue">
             <SVGElement
-              v-show="!url"
-              name="selectPhoto"
+              v-show="!url && $i18n.locale === 'ja'"
+              name="selectPhotoJa"
+              class="mx-auto iconFileInput"
+            />
+            <SVGElement
+              v-show="!url && $i18n.locale === 'en'"
+              name="selectPhotoEn"
               class="mx-auto iconFileInput"
             />
             <Icon
@@ -34,12 +40,12 @@
           </label>
         </section>
         <section class="mt-6">
-          <h2 class="heading"><span class="mr-2">✏</span> テキスト</h2>
+          <h2 class="heading"><span class="mr-2">✏</span> {{ $t('text') }}</h2>
           <input
             v-model="text"
             class="w-full h-10 px-3 mt-2 text-sm font-semibold text-gray-700 placeholder-gray-500 border rounded-lg focus:shadow-outline"
             type="text"
-            placeholder="テキストを入力"
+            :placeholder="$t('inputText')"
             @input="showStyle"
           />
           <div class="mt-2 overflow-x-auto whitespace-no-wrap">
@@ -54,7 +60,9 @@
         </section>
         <transition name="fade">
           <section v-if="shouldShowStyle" class="mt-8">
-            <h2 class="heading"><span class="mr-2">🎨</span> スタイル</h2>
+            <h2 class="heading">
+              <span class="mr-2">🎨</span> {{ $t('style') }}
+            </h2>
             <IconStyleSettingForm
               v-model="iconStyle"
               class="mt-2"
@@ -66,13 +74,15 @@
           </section>
         </transition>
         <section class="mt-8">
-          <h2 class="inline heading"><span class="mr-2">🖼</span> ボーダー</h2>
+          <h2 class="inline heading">
+            <span class="mr-2">🖼</span> {{ $t('border') }}
+          </h2>
           <AppSwitch v-model="shouldShowBorder" class="inline ml-2" />
           <template v-if="shouldShowBorder">
             <div class="mt-2">
-              <h3 class="inline-block text-xs">色</h3>
+              <h3 class="inline-block text-xs">{{ $t('color') }}</h3>
               <input v-model="borderColor" type="color" class="align-bottom" />
-              <h3 class="inline-block ml-2 text-xs">幅</h3>
+              <h3 class="inline-block ml-2 text-xs">{{ $t('width') }}</h3>
               <input
                 :value="borderWidth"
                 type="range"
@@ -87,7 +97,7 @@
         <section class="mt-8 text-center">
           <AppButton
             :is-loading="isLoading"
-            :label="'保存'"
+            :label="$t('save')"
             @click="handleSaveImage"
           >
             <template v-slot:icon>
@@ -105,18 +115,55 @@
         @close="handleResultModalClose"
       >
         <p class="text-lg font-semibold">
-          <span class="mr-2">🎉</span>完成しました<span class="ml-2">🎉</span>
+          <span class="mr-2">🎉</span>
+          {{ $t('complete') }}
+          <span class="ml-2">🎉</span>
         </p>
         <img :src="resultBase64Image" class="w-48 mx-auto mt-2" />
         <p class="mt-2 text-sm">
-          👆 画像を長押しまたは右クリックで画像を保存してください
+          👆 {{ $t('longPressOrRightClickOnTheImage') }}
         </p>
-        <p class="mt-8 text-sm">＼ みんなにこのサービスを教えてね🙏 ／</p>
+        <p class="mt-8 text-sm">
+          ＼
+          {{ $t('shareEveryoneAboutThisService') }}
+          🙏 ／
+        </p>
         <TwitterButton class="mt-2" />
       </AppModal>
     </div>
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "title": "Clubhouse アイコンメーカー",
+    "text": "テキスト",
+    "style": "スタイル",
+    "border": "ボーダー",
+    "color": "色",
+    "width": "幅",
+    "complete": "完成しました",
+    "longPressOrRightClickOnTheImage": "画像を長押しまたは右クリックで画像を保存してください",
+    "shareEveryoneAboutThisService": "みんなにこのサービスを教えてね",
+    "save": "保存",
+    "inputText": "テキストを入力"
+  },
+  "en": {
+    "title": "Clubhouse Icon Maker",
+    "text": "Text",
+    "style": "Style",
+    "border": "Border",
+    "color": "Color",
+    "width": "Width",
+    "complete": "Completed",
+    "longPressOrRightClickOnTheImage": "Long press or right click on the image",
+    "shareEveryoneAboutThisService": "Share everyone about this service",
+    "save": "Save",
+    "inputText": "Input text"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue from 'vue'
@@ -138,7 +185,7 @@ type LocalData = {
   resultBase64Image: string | null
 }
 
-const suggestionTexts = [
+const suggestionTextsJa = [
   '聞き専',
   '離席中',
   '移動中',
@@ -147,6 +194,8 @@ const suggestionTexts = [
   '話しかけて',
   'お風呂中',
 ]
+
+const suggestionTextsEn = ['Listening', 'Leaving', 'Moving', 'Working']
 
 export default Vue.extend({
   data(): LocalData {
@@ -168,6 +217,15 @@ export default Vue.extend({
   },
   computed: {
     suggestionTexts(): string[] {
+      let suggestionTexts: string[] = []
+      switch (this.$i18n.locale) {
+        case 'ja':
+          suggestionTexts = suggestionTextsJa
+          break
+        case 'en':
+          suggestionTexts = suggestionTextsEn
+          break
+      }
       return suggestionTexts
     },
   },
@@ -218,6 +276,37 @@ export default Vue.extend({
     handleUpdateBorderWidth(event: HTMLInputEvent) {
       this.borderWidth = Number(event.target.value as string)
     },
+  },
+  head() {
+    const lang = this.$route.query.lang || 'en'
+    const baseName =
+      lang === 'ja' ? 'Clubhouseアイコンメーカー' : 'Clubhouse Icon Maker'
+    const baseDesc =
+      lang === 'ja'
+        ? '枠線や文字付きのアイコンが簡単につくれます'
+        : 'Create icons with border and text'
+    return {
+      title: baseName,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: baseDesc,
+        },
+        { hid: 'og:site_name', property: 'og:site_name', content: baseName },
+        { hid: 'og:title', property: 'og:title', content: baseName },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: baseDesc,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${process.env.BASE_URL}/images/ogp/${lang}.png`,
+        },
+      ],
+    }
   },
 })
 </script>
