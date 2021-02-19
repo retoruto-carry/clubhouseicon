@@ -83,9 +83,14 @@ export default {
       'nuxt-i18n',
       {
         locales: [
-          { code: 'ja', iso: 'ja_JP', name: '日本語' },
+          { code: 'ja', iso: 'ja-JP', name: '日本語' },
           { code: 'en', iso: 'en-US', name: 'English' },
         ],
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected',
+          onlyOnRoot: true,
+        },
         defaultLocale: 'en',
         strategy: 'no_prefix',
         vueI18n: {
