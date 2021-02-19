@@ -213,7 +213,7 @@ export default Vue.extend({
   computed: {
     suggestionTexts(): string[] {
       let suggestionTexts: string[] = []
-      switch (((this as any).$i18n as any).locale) {
+      switch (this.$i18n.locale) {
         case 'ja':
           suggestionTexts = suggestionTextsJa
           break
