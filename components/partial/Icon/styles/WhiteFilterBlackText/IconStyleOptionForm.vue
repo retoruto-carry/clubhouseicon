@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="inline-block text-xs">文字の色</h3>
+    <h3 class="inline-block text-xs">{{ $t('textColor') }}</h3>
     <input
       class="align-bottom"
       :value="value.fontColor"
@@ -9,6 +9,17 @@
     />
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "textColor": "文字の色"
+  },
+  "en": {
+    "textColor": "Text color"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'

@@ -1,14 +1,14 @@
 <template>
   <div>
     <div>
-      <h3 class="inline-block text-xs">文字の色</h3>
+      <h3 class="inline-block text-xs">{{ $t('textColor') }}</h3>
       <input
         class="align-bottom"
         :value="value.fontColor"
         type="color"
         @input="handleUpdateFontColor"
       />
-      <h3 class="inline-block ml-2 text-xs">ラベルの色</h3>
+      <h3 class="inline-block ml-2 text-xs">{{ $t('labelColor') }}</h3>
       <input
         class="align-bottom"
         :value="value.labelColor"
@@ -17,7 +17,7 @@
       />
     </div>
     <div>
-      <h3 class="inline-block text-xs">サイズ</h3>
+      <h3 class="inline-block text-xs">{{ $t('size') }}</h3>
       <input
         class="w-24 align-bottom"
         :value="value.labelSize"
@@ -26,7 +26,7 @@
         max="90"
         @input="handleUpdateLabelSize"
       />
-      <h3 class="inline-block ml-2 text-xs">位置</h3>
+      <h3 class="inline-block ml-2 text-xs">{{ $t('position') }}</h3>
       <input
         class="w-24 align-bottom"
         :value="value.labelY"
@@ -38,6 +38,23 @@
     </div>
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "textColor": "文字の色",
+    "labelColor": "ラベルの色",
+    "size": "サイズ",
+    "position": "位置"
+  },
+  "en": {
+    "textColor": "Text color",
+    "labelColor": "Label Color",
+    "size": "Size",
+    "position": "position"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h3 class="inline-block text-xs">文字の色</h3>
+    <h3 class="inline-block text-xs">{{ $t('textColor') }}</h3>
     <input
       class="align-bottom"
       :value="value.fontColor"
       type="color"
       @input="handleUpdateFontColor"
     />
-    <h3 class="inline-block text-xs">縁の色</h3>
+    <h3 class="inline-block text-xs">{{ $t('outlineColor') }}</h3>
     <input
       class="align-bottom"
       :value="value.outlineColor"
@@ -16,6 +16,19 @@
     />
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "textColor": "文字の色",
+    "outlineColor": "縁の色"
+  },
+  "en": {
+    "textColor": "Text color",
+    "outlineColor": "Outline Color"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'

@@ -11,7 +11,8 @@
       @input="updateIconStyle"
     />
     <h2 v-show="components[value.name]" class="mt-4 text-sm font-semibold">
-      <span class="mr-2">🔧</span>設定
+      <span class="mr-2">🔧</span>
+      {{ $t('setting') }}
     </h2>
     <transition name="fade" mode="out-in">
       <component
@@ -22,6 +23,17 @@
     </transition>
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "setting": "設定"
+  },
+  "en": {
+    "title": "Setting"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
