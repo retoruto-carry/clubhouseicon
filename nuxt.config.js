@@ -86,10 +86,10 @@ export default {
           { code: 'ja', iso: 'ja_JP', name: '日本語' },
           { code: 'en', iso: 'en-US', name: 'English' },
         ],
-        defaultLocale: 'ja',
+        defaultLocale: 'en',
         strategy: 'no_prefix',
         vueI18n: {
-          fallbackLocale: 'ja',
+          fallbackLocale: 'en',
         },
         vueI18nLoader: true,
       },

@@ -30,7 +30,7 @@
     "setting": "設定"
   },
   "en": {
-    "title": "Setting"
+    "setting": "Setting"
   }
 }
 </i18n>

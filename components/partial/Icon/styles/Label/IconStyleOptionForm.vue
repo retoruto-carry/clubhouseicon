@@ -49,9 +49,9 @@
   },
   "en": {
     "textColor": "Text color",
-    "labelColor": "Label Color",
+    "labelColor": "Label color",
     "size": "Size",
-    "position": "position"
+    "position": "Position"
   }
 }
 </i18n>

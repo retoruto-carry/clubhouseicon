@@ -5,8 +5,9 @@
         <h1 class="text-xl font-semibold text-center md:text-2xl">
           <span class="mr-2">👋 </span>{{ $t('title') }}
         </h1>
+        <TranslateSwitch class="mt-2" />
       </header>
-      <main class="mt-8">
+      <main class="mt-6">
         <section>
           <label class="cursor-pointer hover:bg-blue">
             <SVGElement
