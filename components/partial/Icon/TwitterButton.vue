@@ -4,9 +4,24 @@
     @click="handleClicked"
   >
     <span class="mr-2" />
-    Twitterでつぶやく
+    {{ $t('tweet') }}
   </button>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "tweet": "Twitterでつぶやく",
+    "title": "Clubhouseアイコンメーカー",
+    "shareText": "Clubhouseアイコンメーカーでアイコンを作りました！みんなも使ってみよう！\r\rClubhouseアイコンメーカー｜枠線や文字付きのアイコンが簡単につくれます"
+  },
+  "en": {
+    "tweet": "Tweet",
+    "title": "Clubhouse Icon Maker",
+    "shareText": "I made an icon with Clubhouse Icon Maker! Let's try it!\r\rClubhouse Icon Maker｜Easy to make icons with border and text"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue from 'vue'
@@ -16,13 +31,13 @@ export default Vue.extend({
     twitterShareUrl(): string {
       return (
         'https://twitter.com/intent/tweet?url=' +
-        encodeURIComponent(`${process.env.BASE_URL}`) +
-        '&hashtags=' +
-        encodeURIComponent('Clubhouseアイコンメーカー') +
-        '&text=' +
         encodeURIComponent(
-          `Clubhouseアイコンメーカーでアイコンを作りました！みんなも使ってみよう！\r\rClubhouseアイコンメーカー｜枠線や文字付きのアイコンが簡単につくれます`
-        )
+          `${process.env.BASE_URL}?lang=${this.$i18n.locale}`
+        ) +
+        '&hashtags=' +
+        encodeURIComponent(`${this.$t('title')}`) +
+        '&text=' +
+        encodeURIComponent(`${this.$t('shareText')}`)
       )
     },
   },

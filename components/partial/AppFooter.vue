@@ -1,6 +1,6 @@
 <template>
   <footer class="px-8 py-8 mt-32 text-sm text-center text-gray-600 font-base">
-    <p class="font-medium">©︎ 2021 Clubhouseアイコンメーカー</p>
+    <p class="font-medium">©︎ 2021 {{ $t('title') }}</p>
     <p class="mt-4">Made by</p>
     <p>
       <img
@@ -21,6 +21,17 @@
     </p>
   </footer>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "title": "Clubhouse アイコンメーカー"
+  },
+  "en": {
+    "title": "Clubhouse Icon Maker"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import Vue from 'vue'

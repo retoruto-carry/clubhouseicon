@@ -1,7 +1,7 @@
 require('dotenv').config()
 
-const baseName = 'Clubhouseアイコンメーカー'
-const baseDesc = '枠線や文字付きのアイコンが簡単につくれます'
+const baseName = 'Clubhouse Icon Maker'
+const baseDesc = 'Create icons with border and text'
 const baseUrl = process.env.BASE_URL
 
 export default {
@@ -79,6 +79,21 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          { code: 'ja', iso: 'ja_JP', name: '日本語' },
+          { code: 'en', iso: 'en-US', name: 'English' },
+        ],
+        defaultLocale: 'en',
+        strategy: 'no_prefix',
+        vueI18n: {
+          fallbackLocale: 'en',
+        },
+        vueI18nLoader: true,
+      },
+    ],
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
