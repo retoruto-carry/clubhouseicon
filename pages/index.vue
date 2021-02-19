@@ -94,7 +94,12 @@
             :label="$t('save')"
             @click="handleSaveImage"
           >
-            <template v-slot:icon><span>💾 </span></template>
+            <template v-slot:icon>
+              <img
+                class="inline align-middle"
+                src="/images/icon/download.png"
+              />
+            </template>
           </AppButton>
         </section>
       </main>

@@ -1,7 +1,5 @@
 <template>
-  <footer
-    class="px-8 py-8 mt-32 text-sm text-center text-gray-600 bg-gray-100 font-base"
-  >
+  <footer class="px-8 py-8 mt-32 text-sm text-center text-gray-600 font-base">
     <p class="font-medium">©︎ 2021 {{ $t('title') }}</p>
     <p class="mt-4">Made by</p>
     <p>
